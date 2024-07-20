@@ -1,0 +1,71 @@
+Sistema Medico
+
+Analisa y crea la estructura de la base de datos
+
+
+DataBase salud-time:
+    - users
+        id
+        name
+        lastname (surname)
+        email
+        password
+        type
+        created_at
+        updated_at
+        deleted_at
+
+    - patients
+        id
+        user_id
+        birthday
+        address
+        phone
+        sex
+
+    - doctors
+        id
+        user_id
+        speciality
+        phone
+
+    - quotes
+        id
+        patient_id
+        doctor_id
+        date
+        hour
+        status
+        peso
+        altura
+        presion
+        ritmo
+        created_at
+        updated_at
+        deleted_at
+
+    - schedules
+        id
+        doctor_id
+        days
+        start
+        end
+        created_at
+        updated_at
+
+    - histories
+        id
+        patient_id
+        doctor_id
+        date
+        diagnosis
+        treatment
+        notes
+
+    - payments
+        id
+        patient_id
+        schedule_id
+        mount
+        paymenths_method
+        created_at
