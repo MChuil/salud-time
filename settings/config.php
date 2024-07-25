@@ -1,7 +1,7 @@
-<?php 
-    //Constantes globales
+ <?php 
+// Constantes globales
 
-    define('DABATASE', '');
-    define('USER', '');
-    define('PASSWORD', '');
-    define('BUSSINES', 'Salud Time');
+define('DATABASE', 'salud_time'); 
+define('USER', 'root'); 
+define('PASSWORD', ''); 
+define('BUSINESS', 'Salud Time'); 

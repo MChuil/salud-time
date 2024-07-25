@@ -14,6 +14,7 @@ DataBase salud-time:
         created_at
         updated_at
         deleted_at
+        
 
     - patients
         id
@@ -36,10 +37,10 @@ DataBase salud-time:
         date
         hour
         status
-        peso
-        altura
-        presion
-        ritmo
+        weight
+        heigth
+        pressure
+        rhythm
         created_at
         updated_at
         deleted_at
