@@ -1,7 +1,7 @@
+<?php require_once 'class/User.php' ?>
 <?php require_once 'layout/header.php' ?>
 <?php include 'layout/navbar.php' ?>
 <?php include 'layout/sidebar.php' ?>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -26,6 +26,22 @@
     <section class="content">
         <div class="container-fluid">
     
+        <p>
+        <?php 
+            $userObj = new User();
+            $users = $userObj->getByColumn('email', 'chuil@gmail.com');
+
+            while($user = $users->fetch_array()){
+                // echo "Bienvenido {$user['name']} {$user['lastname']}";
+                var_dump($user);
+            }
+
+            // $user = $db->getById(1);
+            // while($u = $user->fetch_array()){
+            //     var_dump($u);
+            // }
+        ?>
+        </p>
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

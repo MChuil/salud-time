@@ -15,7 +15,6 @@ DataBase salud-time:
         updated_at
         deleted_at
         
-
     - patients
         id
         user_id
@@ -70,3 +69,9 @@ DataBase salud-time:
         mount
         paymenths_method
         created_at
+
+
+
+Funciones v 1.0.0 php puro
+MVC v2.0.0 php puro mvc
+Framework v3.0.0 (Codeigniter/Laravel)

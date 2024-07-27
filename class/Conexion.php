@@ -1,23 +1,26 @@
 <?php
-class Conexion {
-    private $host = 'localhost'; 
-    private $dbname = 'salud_time'; 
-    private $username = 'root'; 
-    private $password = ''; 
-    private $conexion;
 
-    
-    public function conectar() {
-        $this->conexion = new mysqli($this->host, $this->username, $this->password, $this->dbname);
+    require_once 'settings/config.php';
 
-        if ($this->conexion->connect_error) {
-            die('Error de conexión (' . $this->conexion->connect_errno . ') '
-                . $this->conexion->connect_error);
+    class Conexion {
+        private $host = HOST; 
+        private $dbname = DATABASE;
+        private $username = USER; 
+        private $password = PASSWORD;
+        private $conexion;
+
+        
+        public function conectar() {
+            $this->conexion = new mysqli($this->host, $this->username, $this->password, $this->dbname);
+
+            if ($this->conexion->connect_error) {
+                die('Error de conexión (' . $this->conexion->connect_errno . ') '
+                    . $this->conexion->connect_error);
+            }
+
+            return $this->conexion;
         }
 
-        return $this->conexion;
+        
     }
-
-    
-}
 
