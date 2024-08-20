@@ -25,23 +25,6 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-    
-        <p>
-        <?php 
-            $userObj = new User();
-            $users = $userObj->getByColumn('email', 'chuil@gmail.com');
-
-            while($user = $users->fetch_array()){
-                // echo "Bienvenido {$user['name']} {$user['lastname']}";
-                var_dump($user);
-            }
-
-            // $user = $db->getById(1);
-            // while($u = $user->fetch_array()){
-            //     var_dump($u);
-            // }
-        ?>
-        </p>
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
