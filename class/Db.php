@@ -46,18 +46,60 @@
         }
 
 
-       /* public function create(){
-        
-        }  */
+        public function create($data){
+            $keys = implode(',', array_keys($data)); //sacamos las claves
+            $values = array_values($data);
+            $totalFields = count($data);
+            $repeat = str_repeat('?,', $totalFields);
+            $fields = substr($repeat, 0, -1);
+            $sql = "INSERT INTO {$this->table} ($keys) VALUES($fields)";
+            $stmt = $this->conexion->prepare($sql);
 
+            $params = '';
+            foreach($data as $value){
+                if(gettype($value) == 'string'){
+                    $params .='s';
+                }else if(gettype($value)=='integer'){
+                    $params .= 'i';
+                }else if(gettype($value)=='boolean'){
+                    $params .= 'b';
+                }
+            }
+            $stmt->bind_param($params, ...$values);  //spread operator
+            return $stmt->execute();
+        }
 
-       /*   public function update($id){
+        public function update($id, $data){
+            $keys = implode(' = ?, ', array_keys($data)); //sacamos las claves
+            $keys .= '= ?';
+            echo $keys;
+            $values = array_values($data);
+            array_push($values, $id); //agregamos el id al array existente
+            $totalFields = count($data);
+            $sql = "UPDATE {$this->table} SET $keys WHERE id = ?"; 
+            $stmt = $this->conexion->prepare($sql);
+            $params = '';
+            foreach($data as $value){
+                if(gettype($value) == 'string'){
+                    $params .='s';
+                }else if(gettype($value)=='integer'){
+                    $params .= 'i';
+                }else if(gettype($value)=='boolean'){
+                    $params .= 'b';
+                }
+            }
+            $params .= 'i';
+            $stmt->bind_param($params, ...$values);  //spread operator
+            return $stmt->execute();
 
-        } */
+        }
 
 
         public function delete($id){
-
+            $sql = "DELETE FROM {$this->table} WHERE id = ?";
+            $stmt = $this->conexion->prepare(($sql));
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
         }
 
 

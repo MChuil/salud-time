@@ -12,6 +12,7 @@
                     'password' => $_POST['password'],
                     'type' => $_POST['type']
                 ];
+
                 if($user->create($data)){ //si es verdadero significa ok
                     header('Location: users.php'); //redireccionar a users.php
                 }
