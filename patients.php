@@ -1,7 +1,7 @@
 <?php 
-    require_once 'class/User.php';
-    $user = new User();
-    $users = $user->getAll();
+    require_once 'class/Patient.php';
+    $Patient= new Patient();
+    $patients = $Patient->getAll();
 ?>
 <?php require_once 'layout/header.php' ?>
 <?php include 'layout/navbar.php' ?>
@@ -13,11 +13,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Usuarios</h1>
+                    <h1 class="m-0">Paciente</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Usuarios</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pacientes</a></li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -32,7 +32,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="new_user.php" class="btn btn-primary btn-xs">Nuevo usuario</a>
+                            <a href="new_user.php" class="btn btn-primary btn-xs">Nuevo paciente</a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">

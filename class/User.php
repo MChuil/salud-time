@@ -21,5 +21,22 @@
             return $stmt->execute();
         } */
 
+
+
+        
+         //funcion para traducir
+         
+        public function traduccion ($type) {
+            $traducciones = [
+                'admin' => 'Administrador',
+                'receptionist' => 'Recepcionista',
+                'doctor' => 'Doctor',
+                'patient' => 'Paciente'
+            ];
+    
+            return isset($traducciones[$type]) ? $traducciones[$type] : '';
+        }
+
+
         
     }

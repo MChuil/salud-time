@@ -51,6 +51,40 @@
               </p>
             </a>
           </li>
+
+          </li>
+          <li class="nav-item">
+            <a href="doctors.php" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Doctores
+              </p>
+            </a>
+          </li>
+
+          </li>
+          <li class="nav-item">
+            <a href="patients.php" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Pacientes
+              </p>
+            </a>
+          </li>
+
+
+          </li>
+          <li class="nav-item">
+            <a href="schedules.php" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Horarios
+              </p>
+            </a>
+          </li>
+          
+
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
