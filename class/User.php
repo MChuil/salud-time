@@ -2,13 +2,10 @@
     require_once 'Db.php';
 
     class User extends Db {
-        private $conexion;
         
         public function __construct()
         {   
             parent::__construct('users');
-            $conexion = new Conexion();
-            $this->conexion = $conexion->conectar();
         }
 
 

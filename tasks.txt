@@ -1,4 +1,1 @@
-1) En la lista de usaurios, pasar a español el 'tipo de usuario'                        ***terminado***
-2) Agregar al menu las opciones siguientes: Doctores, Pacientes, Horarios               ***terminado***
-3) Crear los archivos necesarios para procesar doctores, pacientes y Horarios           ***terminado***
-4) Crear las paginas, para 'crear y editar, horarios, doctores y pacientes              ***terminado***
+

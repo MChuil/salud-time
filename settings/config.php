@@ -6,7 +6,7 @@ define('DATABASE', 'salud_time');
 
 define('USER', 'root'); 
 
-define('PASSWORD', ''); //se cambio la contraseña 
+define('PASSWORD', 'root'); //se cambio la contraseña 
 
 define('SITE', 'Salud Time');
 
@@ -16,7 +16,7 @@ define('DEMO', false);
 
 define('SITE_LANG', 'es');
 
-define('PATH', 'http://localhost/php_poo/salud-time/');
+define('PATH', 'http://localhost/salud-time/');
 
 
 

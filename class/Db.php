@@ -3,7 +3,7 @@
     //CRUD (CREATE, READ, UPDATE, DELETE)
 
     class Db{
-        private $conexion;
+        protected $conexion;
         private $table;
 
         public function __construct($table)

@@ -1,7 +1,7 @@
 <?php 
     require_once 'class/Doctor.php';
-    $Doctor = new Doctor();
-    $doctors = $Doctor->getAll();
+    $doctor = new Doctor();
+    $doctors = $doctor->getAll();
 ?>
 <?php require_once 'layout/header.php' ?>
 <?php include 'layout/navbar.php' ?>
@@ -40,30 +40,28 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">ID</th>
-                                        <th>Usuario</th>
+                                        <th>Nombre</th>
                                         <th>Correo</th>
-                                        <th>Tipo</th>
-                                        <th>Ultimo cambio</th>
+                                        <th>Especialidad</th>
+                                        <th>Telefono</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($users as $row){ ?>
+                                    <?php foreach ($doctors as $row){ ?>
                                         <tr>
                                             <td><?= $row['id'] ?></td>
-                                            <td><?= $row['name'] ?> <?= $row['lastname']?></td>
+                                            <td><?= $row['name'] ?> <?= $row['lastname'] ?></td>
                                             <td><?= $row['email'] ?></td>
-
-                                            <!--llamar a traduccion-->
-                                            <td><?= $user->traduccion($row['type']) ?></td>
+                                            <td><?= $row['speciality'] ?></td>
                                             
-                                            <td><?= $row['updated_at'] ?></td>
+                                            <td><?= $row['phone'] ?></td>
                                             <td>
-                                                <a href="edit_user.php?id=<?= $row['id'] ?>" class="btn btn-info btn-xs">Editar</a>
+                                                <a href="edit_doctor.php?id=<?= $row['id'] ?>" class="btn btn-info btn-xs">Editar</a>
                                             </td>
                                             <td>
-                                                <a href="proccess_user.php?id=<?=$row['id'] ?>&action=delete" class="btn btn-danger btn-xs">Eliminar</a>
+                                                <a href="proccess_doctor.php?id=<?=$row['id'] ?>&action=delete" class="btn btn-danger btn-xs">Eliminar</a>
                                             </td>
                                         </tr>
                                     <?php } ?>

@@ -1,0 +1,35 @@
+ENCAPSULAMIENTO
+Permite proteger ciertas partes de las clases y solo dar acceso a quien 
+tiene los permisos.
+Tres nivel de acceso:
+    private - Solo se puede usar por la clase que lo definió
+    protected - Lo puede usar la clase que lo definió y sus clases hijas
+    public - Se puede tener acceso desde cualquier clase, función, etc.
+
+El encapsulamiento se puede aplicar tanto a atributos como a metodos
+
+
+
+Tabla A (Users)         Tabla B (Doctors)
+id (primary key)        id (primary key) 
+-                       -
+-                       -
+-                       - user_id  (foreing key)
+-                       -
+-                       -
+- phone (index)         - user_phone (llave foranea)
+
+
+users y doctors 
+
+Existen diferntes tipos de relaciones
+- uno a uno
+- uno a muchos
+- muchos a muchos
+
+polimorficas
+
+
+Consultas relacionadas
+
+SELECT tabla.campo, tabla.campo .... FROM tabla1 JOIN tabla2 ON tabla1.campo = tabla2.campo
