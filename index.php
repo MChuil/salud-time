@@ -1,41 +1,60 @@
-<?php require_once 'class/User.php' ?>
-<?php require_once 'layout/header.php' ?>
-<?php include 'layout/navbar.php' ?>
-<?php include 'layout/sidebar.php' ?>
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+<?php require_once("layout/header-login.php") ?>
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-        </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="index.php"><b>Salud</b>Time</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Acceso restringido</p>
+                <?php if (!empty($_SESSION['error'])):
+                    if ($_SESSION['error'] == 'empty') {
+                        echo "Datos imcompletos, verifique";
+                    } else if ($_SESSION['error'] == 'notfound') {
+                        echo "Usuario y/o contraseña incorrecta";
+                    }
+                    unset($_SESSION['error']);
+                endif;
+                ?>
+
+                <form action="proccess_user.php?action=auth" method="post">
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" name='email' placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" name='password' placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Recuerdame
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
     </div>
-    <!-- /.content-wrapper -->
-    <?php include 'layout/copyright.php' ?>
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-<?php require 'layout/footer.php' ?>
+
+    <?php require_once "layout/footer-login.php" ?>

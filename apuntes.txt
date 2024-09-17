@@ -33,3 +33,23 @@ polimorficas
 Consultas relacionadas
 
 SELECT tabla.campo, tabla.campo .... FROM tabla1 JOIN tabla2 ON tabla1.campo = tabla2.campo
+
+
+
+Sessiones
+variables que se crean en el servidor y son temporales
+
+Para usar variables, si o si debes iniciar con:
+
+session_start();
+
+esta instrucción no se puede poner en cualquier lugar dentro del script, tiene que ser siempre la primera linea de codigo
+
+
+$_SESSION['nombre'] = 'Miguel'
+
+
+echo $_SESSION['nombre'];
+
+eliminar una variable de session
+unset($_SESSION['nombre']);

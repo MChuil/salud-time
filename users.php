@@ -60,10 +60,10 @@
                                             
                                             <td><?= $row['updated_at'] ?></td>
                                             <td>
-                                                <a href="edit_user.php?id=<?= $row['id'] ?>" class="btn btn-info btn-xs">Editar</a>
+                                                <a href="edit_user.php?id=<?= $row['id'] ?>" class="btn btn-info btn-xs"><i class="fas fa-edit"></i> Editar</a>
                                             </td>
                                             <td>
-                                                <a href="proccess_user.php?id=<?=$row['id'] ?>&action=delete" class="btn btn-danger btn-xs">Eliminar</a>
+                                                <a href="proccess_user.php?id=<?=$row['id'] ?>&action=delete" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Eliminar</a>
                                             </td>
                                         </tr>
                                     <?php } ?>
