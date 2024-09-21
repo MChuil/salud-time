@@ -32,7 +32,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="new_user.php" class="btn btn-primary btn-xs">Nuevo Doctor</a>
+                            <a href="new_doctor.php" class="btn btn-primary btn-xs">Nuevo doctor</a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -40,10 +40,8 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">ID</th>
-                                        <th>Nombre</th>
-                                        <th>Correo</th>
                                         <th>Especialidad</th>
-                                        <th>Telefono</th>
+                                        <th>Teléfono</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -52,16 +50,14 @@
                                     <?php foreach ($doctors as $row){ ?>
                                         <tr>
                                             <td><?= $row['id'] ?></td>
-                                            <td><?= $row['name'] ?> <?= $row['lastname'] ?></td>
-                                            <td><?= $row['email'] ?></td>
                                             <td><?= $row['speciality'] ?></td>
-                                            
                                             <td><?= $row['phone'] ?></td>
+                                            
                                             <td>
-                                                <a href="edit_doctor.php?id=<?= $row['id'] ?>" class="btn btn-info btn-xs">Editar</a>
+                                                <a href="edit_doctor.php?id=<?= $row['id'] ?>" class="btn btn-info btn-xs"><i class="fas fa-edit"></i> Editar</a>
                                             </td>
                                             <td>
-                                                <a href="proccess_doctor.php?id=<?=$row['id'] ?>&action=delete" class="btn btn-danger btn-xs">Eliminar</a>
+                                                <a href="proccess_doctor.php?id=<?=$row['id'] ?>&action=delete" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Eliminar</a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -77,11 +73,7 @@
 </div>
 <!-- /.content-wrapper -->
 <?php include 'layout/copyright.php' ?>
-<!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
 </aside>
-<!-- /.control-sidebar -->
 </div>
-<!-- ./wrapper -->
 <?php require 'layout/footer.php' ?>

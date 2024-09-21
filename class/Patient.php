@@ -7,4 +7,16 @@
         {
             parent::__construct('patients');
         }
+
+        public function getAll() {
+            $sql = "SELECT patients.id, patients.user_id, patients.birthday, patients.address, patients.phone, patients.sex FROM patients";
+            $query = $this->conexion->query($sql);
+            return $query->fetch_all(MYSQLI_ASSOC); 
+        }
+
+
+
+
+
+
     }

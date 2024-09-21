@@ -1,4 +1,4 @@
-<?php require_once 'class/User.php' ?>
+<?php require_once 'class/Patient.php' ?>
 <?php require_once 'layout/header.php' ?>
 <?php include 'layout/navbar.php' ?>
 <?php include 'layout/sidebar.php' ?>
@@ -13,7 +13,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Paciente</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pacientes</a></li>
                         <li class="breadcrumb-item active">Nuevo</li>
                     </ol>
                 </div><!-- /.col -->
@@ -33,36 +33,32 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="proccess_user.php?action=insert" method="POST">
+                        <form action="proccess_patient.php?action=insert" method="POST">
                             <div class="card-body row">
                                 <div class="form-group col-6">
                                     <label for="name">Nombre</label>
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="lastname">Apellidos</label>
-                                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Ingrese los apellidos" required>
+                                    <label for="birthday">Fecha de nacimiento</label>
+                                    <input type="date" class="form-control" id="birthday" name="birthday" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="email">Correo electronico</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese un correo valido" required>
+                                    <label for="address">Dirección</label>
+                                    <input type="text" class="form-control" id="address" name="address" placeholder="Ingrese la dirección" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="password">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese la contraseña" required>
+                                    <label for="phone">Teléfono</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Ingrese el teléfono" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="type">Tipo de usuario</label>
-                                    <select name="type" id="type" class="form-control" required>
+                                    <label for="sex">Sexo</label>
+                                    <select name="sex" id="sex" class="form-control" required>
                                         <option value="">Seleccionar</option>
-                                        <option value="admin">Administrador</option>
-                                        <option value="receptionist">Recepcionista</option>
-                                        <option value="doctor">Doctor</option>
-                                        <option value="patient">Paciente</option>
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Femenino</option>
                                     </select>
                                 </div>
-                                
-                               
                             </div>
                             <!-- /.card-body -->
 

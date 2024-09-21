@@ -8,9 +8,21 @@
             parent::__construct('doctors');
         }
 
-        public function getAll(){
-            $sql = "SELECT doctors.id, doctors.speciality, doctors.phone, users.name, users.lastname, users.email FROM doctors JOIN users ON doctors.user_id = users.id";
-            $query = $this->conexion->query($sql);
-            return $query->fetch_all(MYSQLI_ASSOC); 
+        public function getAll()
+        {
+            $query = "SELECT doctors.id, doctors.speciality, doctors.phone, users.name, users.lastname, users.email 
+                      FROM doctors 
+                      JOIN users ON doctors.user_id = users.id";
+            $resultado = $this->conexion->query($query);
+        
+            if ($resultado === false) {
+                echo 'Error en la consulta: ' . $this->conexion->error;
+                return [];
+            }
+        
+            return $resultado->fetch_all(MYSQLI_ASSOC);
         }
     }
+?>
+
+    

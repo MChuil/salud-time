@@ -3,7 +3,7 @@
     $id = $_GET['id'];
     $schedule = new Schedule();
     $response = $schedule->getById($id);
- ?>
+?>
 <?php require_once 'layout/header.php' ?>
 <?php include 'layout/navbar.php' ?>
 <?php include 'layout/sidebar.php' ?>
@@ -38,41 +38,29 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="proccess_user.php?action=update" method="POST">
+                        <form action="proccess_schedule.php?action=update" method="POST">
+                            <input type="hidden" name="id" value="<?= $response['id'] ?>">
                             <div class="card-body row">
                                 <div class="form-group col-6">
-                                    <label for="name">Nombre</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre" value="<?= $response['name']?>" required>
+                                    <label for="doctor_id">ID del Doctor</label>
+                                    <input type="number" class="form-control" id="doctor_id" name="doctor_id" value="<?= $response['doctor_id'] ?>" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="lastname">Apellidos</label>
-                                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Ingrese los apellidos" value="<?= $response['lastname']?>" required>
+                                    <label for="days">Días</label>
+                                    <input type="text" class="form-control" id="days" name="days" value="<?= $response['days'] ?>" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="email">Correo electronico</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese un correo valido" value="<?= $response['email']?>" required>
+                                    <label for="start">Hora de Inicio</label>
+                                    <input type="time" class="form-control" id="start" name="start" value="<?= $response['start'] ?>" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="password">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese la contraseña" value="<?= $response['password']?>" required>
+                                    <label for="end">Hora de Fin</label>
+                                    <input type="time" class="form-control" id="end" name="end" value="<?= $response['end'] ?>" required>
                                 </div>
-                                <div class="form-group col-6">
-                                    <label for="type">Tipo de usuario</label>
-                                    <select name="type" id="type" class="form-control" required>
-                                        <option value="">Seleccionar</option>
-                                        <option value="admin" <?= ($response["type"] == "admin") ? "selected" :  null ?> >Administrador</option>
-                                        <option value="receptionist" <?= ($response["type"] == "receptionist") ? "selected" :  null ?>>Recepcionista</option>
-                                        <option value="doctor" <?= ($response["type"] == "doctor") ? "selected" :  null ?>>Doctor</option>
-                                        <option value="patient" <?= ($response["type"] == "patient") ? "selected" :  null ?>>Paciente</option>
-                                    </select>
-                                </div>
-                                
-                               
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <input type="hidden" name="id" value="<?= $response['id'] ?>">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
                         </form>

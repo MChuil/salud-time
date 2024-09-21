@@ -38,41 +38,36 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="proccess_user.php?action=update" method="POST">
+                        <form action="proccess_patient.php?action=update" method="POST">
                             <div class="card-body row">
+                                <input type="hidden" name="id" value="<?= $response['id'] ?>">
                                 <div class="form-group col-6">
                                     <label for="name">Nombre</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre" value="<?= $response['name']?>" required>
+                                    <input type="text" class="form-control" id="name" name="name" value="<?= $response['name'] ?>" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="lastname">Apellidos</label>
-                                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Ingrese los apellidos" value="<?= $response['lastname']?>" required>
+                                    <label for="birthday">Fecha de nacimiento</label>
+                                    <input type="date" class="form-control" id="birthday" name="birthday" value="<?= $response['birthday'] ?>" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="email">Correo electronico</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese un correo valido" value="<?= $response['email']?>" required>
+                                    <label for="address">Dirección</label>
+                                    <input type="text" class="form-control" id="address" name="address" value="<?= $response['address'] ?>" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="password">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese la contraseña" value="<?= $response['password']?>" required>
+                                    <label for="phone">Teléfono</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" value="<?= $response['phone'] ?>" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="type">Tipo de usuario</label>
-                                    <select name="type" id="type" class="form-control" required>
-                                        <option value="">Seleccionar</option>
-                                        <option value="admin" <?= ($response["type"] == "admin") ? "selected" :  null ?> >Administrador</option>
-                                        <option value="receptionist" <?= ($response["type"] == "receptionist") ? "selected" :  null ?>>Recepcionista</option>
-                                        <option value="doctor" <?= ($response["type"] == "doctor") ? "selected" :  null ?>>Doctor</option>
-                                        <option value="patient" <?= ($response["type"] == "patient") ? "selected" :  null ?>>Paciente</option>
+                                    <label for="sex">Sexo</label>
+                                    <select name="sex" id="sex" class="form-control" required>
+                                        <option value="M" <?= $response['sex'] == 'M' ? 'selected' : '' ?>>Masculino</option>
+                                        <option value="F" <?= $response['sex'] == 'F' ? 'selected' : '' ?>>Femenino</option>
                                     </select>
                                 </div>
-                                
-                               
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <input type="hidden" name="id" value="<?= $response['id'] ?>">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
                         </form>

@@ -1,47 +1,39 @@
 <?php 
+    session_start();
     require_once 'class/Schedule.php';
 
     if(isset($_GET['action'])){
-        $Schedule = new Schedule();
+        $schedule = new Schedule();
         switch ($_GET['action']) {
             case 'insert':
                 $data = [
-                    'id' => $_POST['id'],
                     'doctor_id' => $_POST['doctor_id'],
                     'days' => $_POST['days'],
                     'start' => $_POST['start'],
-                    'end' => $_POST['end'],
-                    'created_at' => $_POST['created_at'],
-                    'updated_at' => $_POST['updated_at'],
-                    
+                    'end' => $_POST['end']
                 ];
 
-                if($Schedule->create($data)){ //si es verdadero significa ok
-                    header('Location: schedules.php'); //redireccionar a users.php
+                if($schedule->create($data)){
+                    header('Location: schedules.php');
                 }
                 break;
             case 'update':
                 $id = $_POST['id'];
                 $data = [
-                    'id' => $_POST['id'],
                     'doctor_id' => $_POST['doctor_id'],
                     'days' => $_POST['days'],
                     'start' => $_POST['start'],
-                    'end' => $_POST['end'],
-                    'created_at' => $_POST['created_at'],
-                    'updated_at' => $_POST['updated_at'],
+                    'end' => $_POST['end']
                 ];
-                if($Schedule->update($id, $data)){
+                if($schedule->update($id, $data)){
                     header('Location: schedules.php');
                 }
                 break;
             case 'delete':
                 $id = $_GET['id'];
-                $user->delete($id);
-                header('Location: schedules.php'); //redireccionar a users.php
+                $schedule->delete($id);
+                header('Location: schedules.php');
                 break;
         }
     }
-    
-    
 ?>

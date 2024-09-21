@@ -1,4 +1,4 @@
-<?php require_once 'class/User.php' ?>
+<?php require_once 'class/Schedule.php' ?>
 <?php require_once 'layout/header.php' ?>
 <?php include 'layout/navbar.php' ?>
 <?php include 'layout/sidebar.php' ?>
@@ -13,7 +13,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Horario</a></li>
+                        <li class="breadcrumb-item"><a href="#">Horarios</a></li>
                         <li class="breadcrumb-item active">Nuevo</li>
                     </ol>
                 </div><!-- /.col -->
@@ -33,36 +33,24 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="proccess_user.php?action=insert" method="POST">
+                        <form action="proccess_schedule.php?action=insert" method="POST">
                             <div class="card-body row">
                                 <div class="form-group col-6">
-                                    <label for="name">Nombre</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre" required>
+                                    <label for="doctor_id">ID del Doctor</label>
+                                    <input type="number" class="form-control" id="doctor_id" name="doctor_id" placeholder="Ingrese el ID del doctor" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="lastname">Apellidos</label>
-                                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Ingrese los apellidos" required>
+                                    <label for="days">Días</label>
+                                    <input type="text" class="form-control" id="days" name="days" placeholder="Ingrese los días disponibles" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="email">Correo electronico</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese un correo valido" required>
+                                    <label for="start">Hora de Inicio</label>
+                                    <input type="time" class="form-control" id="start" name="start" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="password">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese la contraseña" required>
+                                    <label for="end">Hora de Fin</label>
+                                    <input type="time" class="form-control" id="end" name="end" required>
                                 </div>
-                                <div class="form-group col-6">
-                                    <label for="type">Tipo de usuario</label>
-                                    <select name="type" id="type" class="form-control" required>
-                                        <option value="">Seleccionar</option>
-                                        <option value="admin">Administrador</option>
-                                        <option value="receptionist">Recepcionista</option>
-                                        <option value="doctor">Doctor</option>
-                                        <option value="patient">Paciente</option>
-                                    </select>
-                                </div>
-                                
-                               
                             </div>
                             <!-- /.card-body -->
 

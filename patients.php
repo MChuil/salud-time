@@ -1,7 +1,7 @@
 <?php 
-    require_once 'class/Patient.php';
-    $Patient= new Patient();
-    $patients = $Patient->getAll();
+    require_once 'class/Patient.php'; 
+    $patient = new Patient();
+    $patients = $patient->getAll();
 ?>
 <?php require_once 'layout/header.php' ?>
 <?php include 'layout/navbar.php' ?>
@@ -13,7 +13,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Paciente</h1>
+                    <h1 class="m-0">Pacientes</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -32,7 +32,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="new_user.php" class="btn btn-primary btn-xs">Nuevo paciente</a>
+                            <a href="new_patient.php" class="btn btn-primary btn-xs">Nuevo paciente</a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -40,30 +40,29 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">ID</th>
-                                        <th>Usuario</th>
-                                        <th>Correo</th>
-                                        <th>Tipo</th>
-                                        <th>Ultimo cambio</th>
+                                       
+                                        <th>Fecha de nacimiento</th>
+                                        <th>Dirección</th>
+                                        <th>Teléfono</th>
+                                        <th>Sexo</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($users as $row){ ?>
+                                    <?php foreach ($patients as $row){ ?>
                                         <tr>
                                             <td><?= $row['id'] ?></td>
-                                            <td><?= $row['name'] ?> <?= $row['lastname']?></td>
-                                            <td><?= $row['email'] ?></td>
-
-                                            <!--llamar a traduccion-->
-                                            <td><?= $user->traduccion($row['type']) ?></td>
-                                            
-                                            <td><?= $row['updated_at'] ?></td>
+                                           
+                                            <td><?= $row['birthday'] ?></td>
+                                            <td><?= $row['address'] ?></td>
+                                            <td><?= $row['phone'] ?></td>
+                                            <td><?= $row['sex'] ?></td>
                                             <td>
-                                                <a href="edit_user.php?id=<?= $row['id'] ?>" class="btn btn-info btn-xs">Editar</a>
+                                                <a href="edit_patient.php?id=<?= $row['id'] ?>" class="btn btn-info btn-xs"><i class="fas fa-edit"></i> Editar</a>
                                             </td>
                                             <td>
-                                                <a href="proccess_user.php?id=<?=$row['id'] ?>&action=delete" class="btn btn-danger btn-xs">Eliminar</a>
+                                                <a href="proccess_patient.php?id=<?=$row['id'] ?>&action=delete" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Eliminar</a>
                                             </td>
                                         </tr>
                                     <?php } ?>
