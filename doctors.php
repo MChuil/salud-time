@@ -40,6 +40,7 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">ID</th>
+                                        <th>Nombre</th>
                                         <th>Especialidad</th>
                                         <th>Teléfono</th>
                                         <th></th>
@@ -50,6 +51,7 @@
                                     <?php foreach ($doctors as $row){ ?>
                                         <tr>
                                             <td><?= $row['id'] ?></td>
+                                            <td><?= $row['name'] . " ". $row['lastname'] ?></td>
                                             <td><?= $row['speciality'] ?></td>
                                             <td><?= $row['phone'] ?></td>
                                             

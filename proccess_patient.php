@@ -7,7 +7,7 @@
         switch ($_GET['action']) {
             case 'insert':
                 $data = [
-                    
+                    'name' => $_POST['name'],
                     'birthday' => $_POST['birthday'],
                     'address' => $_POST['address'],
                     'phone' => $_POST['phone'],
@@ -21,7 +21,7 @@
             case 'update':
                 $id = $_POST['id'];
                 $data = [
-                    
+                    'name' => $_POST['name'],
                     'birthday' => $_POST['birthday'],
                     'address' => $_POST['address'],
                     'phone' => $_POST['phone'],

@@ -1,11 +1,18 @@
 <?php 
+    session_start();
+    //VALIDAR SI EXISTE LA VARIABLE DE SESSION LOGIN Y SI ES VERDADERA
+    if(!isset($_SESSION['login'])){
+        header('Location: index.php');
+    }
+
     require_once 'class/User.php';
     $user = new User();
     $users = $user->getAll();
+
+    require_once 'layout/header.php'; 
+    include 'layout/navbar.php';
+    include 'layout/sidebar.php'; 
 ?>
-<?php require_once 'layout/header.php' ?>
-<?php include 'layout/navbar.php' ?>
-<?php include 'layout/sidebar.php' ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->

@@ -40,7 +40,7 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">ID</th>
-                                       
+                                        <th>Nombre</th>
                                         <th>Fecha de nacimiento</th>
                                         <th>Dirección</th>
                                         <th>Teléfono</th>
@@ -53,7 +53,7 @@
                                     <?php foreach ($patients as $row){ ?>
                                         <tr>
                                             <td><?= $row['id'] ?></td>
-                                           
+                                            <td><?= $row['name'] ?></td>
                                             <td><?= $row['birthday'] ?></td>
                                             <td><?= $row['address'] ?></td>
                                             <td><?= $row['phone'] ?></td>

@@ -41,7 +41,9 @@
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="days">Días</label>
-                                    <input type="text" class="form-control" id="days" name="days" placeholder="Ingrese los días disponibles" required>
+                                    <input type="checkbox" value="lunes"> Lunes
+                                    <input type="checkbox" value="martes"> Martes
+                                    <!-- input type="text" class="form-control" id="days" name="days" placeholder="Ingrese los días disponibles" required> -->
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="start">Hora de Inicio</label>

@@ -14,7 +14,7 @@
           <img src="assets/images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><?= $_SESSION['nombre'] ?></a>
         </div>
       </div>
 
@@ -36,7 +36,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="index.php" class="nav-link active">
+            <a href="dashboard.php" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Inicio
@@ -79,6 +79,15 @@
               <i class="nav-icon fas fa-calendar-week"></i>
               <p>
                 Horarios
+              </p>
+            </a>
+          </li>
+          </li>
+          <li class="nav-item">
+            <a href="logout.php" class="nav-link text-danger">
+             <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                SALIR
               </p>
             </a>
           </li>

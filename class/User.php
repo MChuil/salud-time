@@ -26,6 +26,14 @@ class User extends Db
             return false;
         }
     }
+
+    //listar usuarios de tipo Doctor
+    public function listDoctors(){
+        $sql = "SELECT id, name, lastname FROM users WHERE type = 'doctor'";
+        $query = $this->conexion->query($sql);
+        return $query->fetch_all(MYSQLI_ASSOC); //devuelve un array
+    }
+    
     //funcion para traducir
 
     public function traduccion($type)

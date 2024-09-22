@@ -60,8 +60,8 @@
                                 <div class="form-group col-6">
                                     <label for="sex">Sexo</label>
                                     <select name="sex" id="sex" class="form-control" required>
-                                        <option value="M" <?= $response['sex'] == 'M' ? 'selected' : '' ?>>Masculino</option>
-                                        <option value="F" <?= $response['sex'] == 'F' ? 'selected' : '' ?>>Femenino</option>
+                                        <option value="male" <?= $response['sex'] == 'male' ? 'selected' : '' ?>>Masculino</option>
+                                        <option value="female" <?= $response['sex'] == 'female' ? 'selected' : '' ?>>Femenino</option>
                                     </select>
                                 </div>
                             </div>

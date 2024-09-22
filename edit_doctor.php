@@ -33,8 +33,9 @@
                         <form action="proccess_doctor.php?action=update" method="POST">
                             <div class="card-body row">
                                 <div class="form-group col-6">
-                                    <label for="user_id">ID de Usuario</label>
-                                    <input type="text" class="form-control" id="user_id" name="user_id" value="<?= $response['user_id'] ?>" required>
+                                    <label for="user_id">
+                                        Dr. <?= strtoupper($response['name']  . " " . $response['lastname']) ?>
+                                    </label>
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="speciality">Especialidad</label>

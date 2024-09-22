@@ -19,7 +19,6 @@
             case 'update':
                 $id = $_POST['id'];
                 $data = [
-                    'user_id' => $_POST['user_id'],
                     'speciality' => $_POST['speciality'],
                     'phone' => $_POST['phone']
                 ];

@@ -1,4 +1,18 @@
 <?php require_once 'class/Doctor.php' ?>
+<?php require_once 'class/User.php' ?>
+<?php 
+    $user = new User();
+    $users = $user->listDoctors(); //lista solo doctores
+    $data = [];  //nuevo array
+
+    foreach ($users as $row) {
+        $dr = new Doctor();
+        $response = $dr->getDr($row['id']);  // buscamos en doctores por su id
+        if(empty($response[0])){  //Si no se encontro 
+            array_push($data, $row); //agregamos el doctor al nuevo array
+        }
+    }
+?>
 <?php require_once 'layout/header.php' ?>
 <?php include 'layout/navbar.php' ?>
 <?php include 'layout/sidebar.php' ?>
@@ -28,8 +42,13 @@
                         <form action="proccess_doctor.php?action=insert" method="POST">
                             <div class="card-body row">
                                 <div class="form-group col-6">
-                                    <label for="user_id">ID de Usuario</label>
-                                    <input type="text" class="form-control" id="user_id" name="user_id" placeholder="Ingrese el ID del usuario" required>
+                                    <label for="user_id">Seleccione el usuario</label>
+                                    <select id="user_id" name="user_id" class="form-control" required>
+                                        <option value="">Seleccionar</option>
+                                        <?php foreach ($data as $item){ ?>
+                                            <option value="<?= $item['id' ]?>"><?= $item['name'] . ' ' . $item['lastname']  ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="speciality">Especialidad</label>
