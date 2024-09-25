@@ -1,3 +1,12 @@
+<?php 
+
+    session_start();
+    //VALIDAR SI EXISTE LA VARIABLE DE SESSION LOGIN Y SI ES VERDADERA
+    if(!isset($_SESSION['login'])){
+        header('Location: index.php');
+    }
+    
+?>
 <?php require_once 'class/Doctor.php' ?>
 <?php require_once 'class/User.php' ?>
 <?php 

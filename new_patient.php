@@ -1,3 +1,12 @@
+<?php 
+
+    session_start();
+    //VALIDAR SI EXISTE LA VARIABLE DE SESSION LOGIN Y SI ES VERDADERA
+    if(!isset($_SESSION['login'])){
+        header('Location: index.php');
+    }
+    
+?>
 <?php require_once 'class/Patient.php' ?>
 <?php require_once 'layout/header.php' ?>
 <?php include 'layout/navbar.php' ?>

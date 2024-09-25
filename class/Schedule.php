@@ -22,5 +22,31 @@
     
         return $resultado->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function insert($doctor_id, $days, $start, $end) {
+        
+        $query = "INSERT INTO schedules (doctor_id, days, start, end, created_at, updated_at)
+                  VALUES (?, ?, ?, ?, NOW(), NOW())";
+
+        
+        $stmt = $this->conexion->prepare($query);
+
+        
+        $stmt->bind_param('isss', $doctor_id, $days, $start, $end);
+
+        
+        $stmt->execute();
+
         
     }
+
+
+
+    public function getDr($user_id){
+        $query = "SELECT * FROM doctors WHERE user_id ={$user_id} LIMIT 1";
+        $resultado = $this->conexion->query($query);
+    
+        return $resultado->fetch_all(MYSQLI_ASSOC);
+    }
+    
+}
