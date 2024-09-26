@@ -6,7 +6,7 @@
         private $host = 'localhost'; 
         private $dbname = 'salud_time';
         private $username = 'root'; 
-        private $password = '';
+        private $password = 'root';
         private $conexion;
 
         

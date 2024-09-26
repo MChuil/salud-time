@@ -6,21 +6,9 @@
         header('Location: index.php');
     }
     
-?>
-<?php require_once 'class/Doctor.php'; ?>
-<?php require_once 'class/User.php'; ?>
-<?php 
-    $user = new User();
-    $users = $user->listDoctors(); // Lista solo doctores
-    $data = [];  // Nuevo array
-
-    foreach ($users as $row) {
-        $dr = new Doctor();
-        $response = $dr->getDr($row['id']);  // Buscamos en doctores por su id
-        if (empty($response[0])) {  // Si no se encontró 
-            array_push($data, $row); // Agregamos el doctor al nuevo array
-        }
-    }
+    require_once 'class/Doctor.php';
+    $doctor = new Doctor();
+    $doctors = $doctor->getAll();
 ?>
 
 <?php require_once 'layout/header.php'; ?>
@@ -50,7 +38,6 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header"></div>
-
                         <!-- Formulario para nuevo horario -->
                         <form action="proccess_schedule.php?action=insert" method="POST">
                             <div class="card-body row">
@@ -59,7 +46,7 @@
                                     <label for="doctor_id">Seleccione el Doctor</label>
                                     <select id="doctor_id" name="doctor_id" class="form-control" required>
                                         <option value="">Seleccionar</option>
-                                        <?php foreach ($data as $item) { ?>
+                                        <?php foreach ($doctors as $item) { ?>
                                             <option value="<?= $item['id'] ?>"><?= $item['name'] . ' ' . $item['lastname'] ?></option>
                                         <?php } ?>
                                     </select>
@@ -78,11 +65,11 @@
                                 <!-- Horario fijo de inicio y fin -->
                                 <div class="form-group col-6">
                                     <label for="start">Hora de Inicio</label>
-                                    <input type="time" class="form-control" id="start" name="start" value="08:00" readonly>
+                                    <input type="time" class="form-control" id="start" name="start" value="08:00">
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="end">Hora de Fin</label>
-                                    <input type="time" class="form-control" id="end" name="end" value="14:00" readonly>
+                                    <input type="time" class="form-control" id="end" name="end" value="14:00">
                                 </div>
                             </div>
 

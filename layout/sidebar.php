@@ -14,7 +14,7 @@
           <img src="assets/images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?= $_SESSION['nombre'] ?></a>
+          <a href="profile.php" class="d-block"><?= $_SESSION['nombre'] ?></a>
         </div>
       </div>
 
@@ -79,6 +79,14 @@
               <i class="nav-icon fas fa-calendar-week"></i>
               <p>
                 Horarios
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="schedules.php" class="nav-link">
+              <i class="nav-icon fas fa-calendar-week"></i>
+              <p>
+                Citas
               </p>
             </a>
           </li>

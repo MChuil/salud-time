@@ -31,10 +31,9 @@
                     'name' => $_POST['name'],
                     'lastname' => $_POST['lastname'],
                     'email' => $_POST['email'],
-                    'password' => $_POST['password'],
+                    'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
                     'type' => $_POST['type']
                 ];
-
                 if($user->create($data)){ //si es verdadero significa ok
                     header('Location: users.php'); //redireccionar a users.php
                 }

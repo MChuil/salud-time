@@ -48,7 +48,7 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">ID</th>
-                                        <th>Doctor ID</th>
+                                        <th>Doctor</th>
                                         <th>Días</th>
                                         <th>Inicio</th>
                                         <th>Fin</th>
@@ -62,8 +62,15 @@
                                     <?php foreach ($schedules as $row){ ?>
                                         <tr>
                                             <td><?= $row['id'] ?></td>
-                                            <td><?= $row['doctor_id'] ?></td>
-                                            <td><?= $row['days'] ?></td>
+                                            <td><?= $row['name'] . " " . $row['lastname']?></td>
+                                            <td>
+                                                <?php
+                                                    $days = json_decode($row['days']);
+                                                    foreach($days as $key=>$value){
+                                                        echo ucfirst($value) . ", ";
+                                                    }
+                                                ?>
+                                            </td>
                                             <td><?= $row['start'] ?></td>
                                             <td><?= $row['end'] ?></td>
                                             <td><?= $row['created_at'] ?></td>

@@ -9,18 +9,16 @@ class User extends Db
         parent::__construct('users');
     }
 
-
-
     public function login($email, $password)
     {
         $query = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
         $resultado = $this->conexion->query($query);
         if ($resultado->num_rows > 0) {
             $user = $resultado->fetch_assoc();
-            if ($password == $user['password']) {
+            if (password_verify($password, $user['password'])) {
                 return $user;
             } else {
-              return false;
+                return false;
             }
         } else {
             return false;

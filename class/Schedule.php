@@ -3,19 +3,18 @@
 
     class Schedule extends Db{
 
-        public function __construct()
+    public function __construct()
     {   
-       
         parent::__construct('schedules');
     }
 
 
     public function getAll()
     {
-        $query = "SELECT schedules.id, schedules.doctor_id, schedules.days, schedules.start, schedules.end, 
-                         schedules.created_at, schedules.updated_at, doctors.speciality, doctors.phone
-                  FROM schedules
-                  JOIN doctors ON schedules.doctor_id = doctors.id";
+        $query = "SELECT schedules.id, schedules.doctor_id, schedules.days, schedules.start, schedules.end,schedules.created_at, schedules.updated_at, doctors.speciality, doctors.phone, users.name, users.lastname
+                FROM schedules
+                JOIN doctors ON schedules.doctor_id = doctors.id
+                JOIN users ON doctors.user_id = users.id";
         $resultado = $this->conexion->query($query);
     
         
@@ -25,8 +24,8 @@
 
     public function insert($doctor_id, $days, $start, $end) {
         
-        $query = "INSERT INTO schedules (doctor_id, days, start, end, created_at, updated_at)
-                  VALUES (?, ?, ?, ?, NOW(), NOW())";
+        $query = "INSERT INTO schedules (doctor_id, days, start, end)
+                  VALUES (?, ?, ?, ?)";
 
         
         $stmt = $this->conexion->prepare($query);
