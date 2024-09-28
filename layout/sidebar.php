@@ -83,7 +83,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="schedules.php" class="nav-link">
+            <a href="quote.php" class="nav-link">
               <i class="nav-icon fas fa-calendar-week"></i>
               <p>
                 Citas

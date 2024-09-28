@@ -47,5 +47,23 @@
     
         return $resultado->fetch_all(MYSQLI_ASSOC);
     }
+
+
+    public function getById($id) {
+        $query = "SELECT schedules.id, schedules.doctor_id, schedules.days, schedules.start, schedules.end, 
+                         users.name, users.lastname 
+                  FROM schedules 
+                  JOIN doctors ON schedules.doctor_id = doctors.id
+                  JOIN users ON doctors.user_id = users.id
+                  WHERE schedules.id = {$id}";
+                  
+        $resultado = $this->conexion->query($query);
+    
+       
+    
+        $row = $resultado->fetch_all(MYSQLI_ASSOC);
+        return $row[0];
+    }
+    
     
 }

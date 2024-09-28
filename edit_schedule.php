@@ -43,50 +43,60 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            
+                            <!-- Aquí podrías añadir un título si deseas -->
                         </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <form action="proccess_schedule.php?action=update" method="POST">
-                            <input type="hidden" name="id" value="<?= $response['id'] ?>">
-                            <div class="card-body row">
-                                <div class="form-group col-6">
-                                    <label for="doctor_id">ID del Doctor</label>
-                                    <input type="number" class="form-control" id="doctor_id" name="doctor_id" value="<?= $response['doctor_id'] ?>" required>
-                                </div>
-                                <div class="form-group col-6">
-                                    <label for="days">Días</label>
-                                    <input type="text" class="form-control" id="days" name="days" value="<?= $response['days'] ?>" required>
-                                </div>
-                                <div class="form-group col-6">
-                                    <label for="start">Hora de Inicio</label>
-                                    <input type="time" class="form-control" id="start" name="start" value="<?= $response['start'] ?>" required>
-                                </div>
-                                <div class="form-group col-6">
-                                    <label for="end">Hora de Fin</label>
-                                    <input type="time" class="form-control" id="end" name="end" value="<?= $response['end'] ?>" required>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
+                        <!-- Formulario para editar horario -->
+                       
+                            <form action="proccess_schedule.php?action=update" method="POST">
+                                <input type="hidden" name="id" value="<?= $response['id'] ?>">
+                                <input type="hidden" name="doctor_id" value="<?= $response['doctor_id'] ?>"> <!-- Asegúrate de que 'doctor_id' exista en $response -->
 
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
-                        </form>
+                                <div class="card-body row">
+                                    <!-- nombre doctor-->
+                                    <div class="form-group col-6">
+                                        <label for="doctor_name">Doctor</label>
+                                        <p>Dr. <?= strtoupper($response['name'] . ' ' . $response['lastname']) ?></p>
+                                    </div>
+
+                                    <!-- días marcados -->
+                                    <div class="form-group col-6">
+                                        <label for="days">Días Disponibles</label><br>
+                                        <?php
+                                            $selected_days = json_decode($response['days']);
+                                            $days_of_week = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes'];
+
+                                            foreach ($days_of_week as $day) {
+                                                $checked = in_array($day, $selected_days) ? 'checked' : '';
+                                                echo "<input type='checkbox' name='days[]' value='$day' $checked> " . ucfirst($day) . "<br>";
+                                            }
+                                        ?>
+                                    </div>
+
+                                    <!-- horario -->
+                                    <div class="form-group col-6">
+                                        <label for="start">Hora de Inicio</label>
+                                        <input type="time" class="form-control" id="start" name="start" value="<?= $response['start'] ?>" required>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label for="end">Hora de Fin</label>
+                                        <input type="time" class="form-control" id="end" name="end" value="<?= $response['end'] ?>" required>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                                </div>
+                            </form>
+
                     </div>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 <?php include 'layout/copyright.php' ?>
 <!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-</aside>
-<!-- /.control-sidebar -->
-</div>
+<aside class="control-sidebar control-sidebar-dark"></aside>
 <!-- ./wrapper -->
 <?php require 'layout/footer.php' ?>

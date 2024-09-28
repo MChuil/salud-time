@@ -21,7 +21,7 @@
                 $id = $_POST['id'];
                 $data = [
                     'doctor_id' => $_POST['doctor_id'],
-                    'days' => $_POST['days'],
+                    'days' => json_encode($_POST['days']),
                     'start' => $_POST['start'],
                     'end' => $_POST['end']
                 ];
