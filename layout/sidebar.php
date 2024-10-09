@@ -31,77 +31,59 @@
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="dashboard.php" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Inicio
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="users.php" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                Usuarios
-              </p>
-            </a>
-          </li>
+      <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+        <li class="nav-item">
+          <a href="dashboard.php" class="nav-link active">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>Inicio</p>
+          </a>
+        </li>
 
-          </li>
-          <li class="nav-item">
-            <a href="doctors.php" class="nav-link">
-              <i class="nav-icon fas fa-user-md"></i>
-              <p>
-                Doctores
-              </p>
-            </a>
-          </li>
+        <?php if ($_SESSION['rol'] == 'admin'): ?>
+        <li class="nav-item">
+          <a href="users.php" class="nav-link">
+            <i class="nav-icon fas fa-user"></i>
+            <p>Usuarios</p>
+          </a>
+        </li>
+        <?php endif; ?>
 
-          </li>
-          <li class="nav-item">
-            <a href="patients.php" class="nav-link">
-              <i class="nav-icon fas fa-user-injured"></i>
-              <p>
-                Pacientes
-              </p>
-            </a>
-          </li>
-
-
-          </li>
-          <li class="nav-item">
-            <a href="schedules.php" class="nav-link">
-              <i class="nav-icon fas fa-calendar-week"></i>
-              <p>
-                Horarios
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="quote.php" class="nav-link">
-              <i class="nav-icon fas fa-calendar-week"></i>
-              <p>
-                Citas
-              </p>
-            </a>
-          </li>
-          </li>
-          <li class="nav-item">
-            <a href="logout.php" class="nav-link text-danger">
-             <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>
-                SALIR
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
+        <li class="nav-item">
+          <a href="doctors.php" class="nav-link">
+            <i class="nav-icon fas fa-user-md"></i>
+            <p>Doctores</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="patients.php" class="nav-link">
+            <i class="nav-icon fas fa-user-injured"></i>
+            <p>Pacientes</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="schedules.php" class="nav-link">
+            <i class="nav-icon fas fa-calendar-week"></i>
+            <p>Horarios</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="quote.php" class="nav-link">
+            <i class="nav-icon fas fa-calendar-week"></i>
+            <p>Citas</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="logout.php" class="nav-link text-danger">
+            <i class="nav-icon fas fa-sign-out-alt"></i>
+            <p>SALIR</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

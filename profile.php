@@ -51,18 +51,16 @@ include 'layout/sidebar.php';
                     </div>
                     <!-- /.card -->
                 </div>
-            </div>
 
-            <!-- Horizontal Form for changing password -->
-            <div class="row justify-content-center" id="change-password-form" style="display: none;">
-                <div class="col-md-4">
+                <!-- Cambiar contraseña form -->
+                <div class="col-md-4" id="change-password-form" style="display: none;">
                     <div class="card card-info">
                         <div class="card-header">
                             <h3 class="card-title">Cambiar Contraseña</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form class="form-horizontal">
+                        <form class="form-horizontal"action="change_password.php" method="POST" >
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="newPassword" class="col-sm-4 col-form-label">Nueva Contraseña</label>
@@ -70,11 +68,16 @@ include 'layout/sidebar.php';
                                         <input type="password" class="form-control" id="newPassword" placeholder="Nueva Contraseña">
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="repeatPassword" class="col-sm-4 col-form-label">Repetir Contraseña</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control" id="repeatPassword" placeholder="Repetir Contraseña">
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-info">Cambiar Contraseña</button>
-                                <button type="button" class="btn btn-default float-right" id="cancel-change">Cancelar</button>
                             </div>
                             <!-- /.card-footer -->
                         </form>
@@ -100,9 +103,5 @@ include 'layout/sidebar.php';
 <script>
     document.getElementById('change-password-btn').addEventListener('click', function() {
         document.getElementById('change-password-form').style.display = 'block';
-    });
-
-    document.getElementById('cancel-change').addEventListener('click', function() {
-        document.getElementById('change-password-form').style.display = 'none';
     });
 </script>
