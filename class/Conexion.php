@@ -3,10 +3,10 @@
     require_once 'settings/config.php';
 
     class Conexion {
-        private $host = 'localhost'; 
-        private $dbname = 'salud_time';
-        private $username = 'root'; 
-        private $password = '';
+        private $host = HOST; 
+        private $dbname = DATABASE;
+        private $username = USER; 
+        private $password = PASSWORD;
         private $conexion;
 
         

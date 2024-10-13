@@ -8,16 +8,23 @@
     // Cargar las clases de Doctor y Paciente
     require_once 'class/Doctor.php';
     require_once 'class/Patient.php';
-
-    $doctor = new Doctor();
-    $doctors = $doctor->getAll();
+    require_once 'class/Schedule.php';
 
     $patient = new Patient();
     $patients = $patient->getAll();
 
-    require_once 'class/Schedule.php';
+
+    $doctor = new Doctor();
+    $doctors = $doctor->getAll();
     $schedule = new Schedule();
-    $schedules = $schedule->getAll();
+    for ($i=0; $i < count($doctors); $i++) { 
+        $query = $schedule->getByDoctor($doctors[$i]['id']);
+        if(count($query)>0){
+            $doctors[$i]['days'] = $query['days'];
+            $doctors[$i]['start'] = $query['start'];
+            $doctors[$i]['end'] = $query['end'];
+        }
+    }
 ?>
 
 <?php require_once 'layout/header.php'; ?>
@@ -50,7 +57,8 @@
                         <!-- Formulario para nueva cita -->
                             <form action="proccess_quote.php?action=insert" method="POST">
                                 <div class="card-body row">
-                                    
+                                
+                                    <input type="hidden" value="<?= json_encode($doctors) ?>" id="listDoctors">
                                     <!-- Selección del paciente -->
                                     <div class="form-group col-6">
                                         <label for="patient_id">Seleccione el Paciente</label>
@@ -65,63 +73,31 @@
                                     <!-- Selección del doctor -->
                                     <div class="form-group col-6">
                                         <label for="doctor_id">Seleccione el Doctor</label>
-                                        <select id="doctor_id" name="doctor_id" class="form-control" required>
+                                        <select id="doctor_id" name="doctor_id" class="form-control"  required>
                                             <option value="">Seleccionar</option>
                                             <?php foreach ($doctors as $item) { ?>
-                                                <option value="<?= $item['id'] ?>"><?= $item['name']?></option>
+                                                <option value="<?= $item['id'] ?>"><?= $item['name'] . ' ' . $item['lastname']?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
 
                                     <!-- Selección del horario -->
                                     <div class="form-group col-6">
-                                        <label for="schedule_id">Seleccione el Horario</label>
-                                        <select id="schedule_id" name="schedule_id" class="form-control" required>
+                                        <label for="schedule_id">Seleccione el Dia</label>
+                                        <select id="days" name="day" class="form-control" required>
                                             <option value="">Seleccionar</option>
-                                            <?php foreach ($schedules as $item) {
-                                                $days = json_decode($item['days'], true); 
-                                                $daysText = implode(', ', $days); 
-                                            ?>
-                                                <option value="<?= $item['id'] ?>">
-                                                    <?= $daysText . ' ' . $item['start'] . ' - ' . $item['end'] ?>
-                                                </option>
-                                            <?php } ?>
                                         </select>
                                     </div>
 
                                     <!-- Peso -->
                                     <div class="form-group col-6">
-                                        <label for="weight">Peso (kg)</label>
-                                        <input type="number" step="0.01" id="weight" name="weight" class="form-control" required>
-                                    </div>
-
-                                    <!-- Altura -->
-                                    <div class="form-group col-6">
-                                        <label for="height">Altura (cm)</label>
-                                        <input type="number" step="0.01" id="height" name="height" class="form-control" required>
-                                    </div>
-
-                                    <!-- Presión -->
-                                    <div class="form-group col-6">
-                                        <label for="pressure">Presión (mm Hg)</label>
-                                        <input type="text" id="pressure" name="pressure" class="form-control" required>
-                                    </div>
-
-                                    <!-- Ritmo cardíaco -->
-                                    <div class="form-group col-6">
-                                        <label for="rhythm">Ritmo cardíaco (bpm)</label>
-                                        <input type="text" id="rhythm" name="rhythm" class="form-control" required>
-                                    </div>
-
-                                    <!-- Estatus -->
-                                    <div class="form-group col-6">
-                                        <label for="status">Estatus</label>
-                                        <select id="status" name="status" class="form-control" required>
-                                            <option value="Pendiente">Pendiente</option>
-                                            <option value="Completada">Completada</option>
-                                            <option value="Cancelada">Cancelada</option>
+                                    <label for="schedule_id">Seleccione la hora</label>
+                                        <select id="schedule" name="schedule" class="form-control" required>
+                                            <option value="">Seleccionar</option>
                                         </select>
                                     </div>
+
+                            
 
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary">Guardar Cita</button>
@@ -138,4 +114,34 @@
 
 <?php include 'layout/copyright.php'; ?>
 <aside class="control-sidebar control-sidebar-dark"></aside>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        let doctors = <?= json_encode($doctors) ?>;
+        console.log(doctors);
+        const doctor_id = document.querySelector('#doctor_id'); //select
+        const days = document.querySelector('#days'); //select
+        const schedule = document.querySelector('#schedule'); //select
+
+        doctor_id.addEventListener('change', ()=>{
+            let id = doctor_id.value;
+            let query = doctors.find(r => r.id === id);
+            days.innerHTML = '';
+            let option = document.createElement('option')
+            option.value ='';
+            option.text= 'Seleccionar'
+            option.disabled = true;
+            option.selected = true;
+            days.appendChild(option)
+            if(query.days){
+                let dias = JSON.parse(query.days)
+                for (const key in dias) {
+                    let option = document.createElement('option')
+                    option.value = dias[key];
+                    option.text = dias[key];
+                    days.appendChild(option);
+                }
+            }
+        })
+    })
+</script>
 <?php require 'layout/footer.php'; ?>

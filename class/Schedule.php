@@ -64,6 +64,23 @@
         $row = $resultado->fetch_all(MYSQLI_ASSOC);
         return $row[0];
     }
+
+    public function getByDoctor($id){
+        $query = "SELECT days, start, end FROM schedules WHERE doctor_id = {$id}";
+        $resultado = $this->conexion->query($query);
+        $row = $resultado->fetch_all(MYSQLI_ASSOC);
+        /*if(count($row)>0){
+            return $row[0];
+        }else{
+            return [];
+        }*/
+
+        return (count($row)>0) ? $row[0] : [];
+
+    }
+
+
+
     
     
 }
