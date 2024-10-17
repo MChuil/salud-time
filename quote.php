@@ -47,20 +47,16 @@ $quotes = $quote->getAll();
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="width: 10px">ID</th>
+                                        <th style="width: 10px"></th>
                                         <th>Paciente</th>
                                         <th>Médico</th>
                                         <th>Fecha</th>
                                         <th>Hora</th>
                                         <th>Estatus</th>
-                                        <th>Peso</th>
-                                        <th>Altura</th>
-                                        <th>Presión</th>
-                                        <th>Ritmo</th>
                                         <th>Creado</th>
                                         <th>Actualizado</th>
-                                        <th></th>
-                                        <th></th>
+                                        
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>

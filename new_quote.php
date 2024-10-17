@@ -144,4 +144,63 @@
         })
     })
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', ()=> {
+        let doctors = <?= json_encode($doctors) ?>;
+        const doctor_id = document.querySelector('#doctor_id'); // select para doctor
+        const days = document.querySelector('#days'); // select para dias
+        const schedule = document.querySelector('#schedule'); // select para horas
+
+        doctor_id.addEventListener('change', () => {
+            let id = doctor_id.value;
+            let query = doctors.find(r => r.id === id);
+            
+            
+            days.innerHTML = '';
+            schedule.innerHTML = '';
+            
+            
+            let optionDay = document.createElement('option');
+            optionDay.value = '';
+            optionDay.text = 'Seleccionar';
+            optionDay.disabled = true;
+            optionDay.selected = true;
+            days.appendChild(optionDay);
+            
+            
+            let optionHour = document.createElement('option');
+            optionHour.value = '';
+            optionHour.text = 'Seleccionar';
+            optionHour.disabled = true;
+            optionHour.selected = true;
+            schedule.appendChild(optionHour);
+
+            
+            if(query.days){
+                let dias = JSON.parse(query.days);
+                for (const key in dias) {
+                    let option = document.createElement('option');
+                    option.value = dias[key];
+                    option.text = dias[key];
+                    days.appendChild(option);
+                }
+            }
+
+            
+            if(query.start && query.end){
+                let startHour = parseInt(query.start);
+                let endHour = parseInt(query.end);
+
+                for(let hour = startHour; hour <= endHour; hour++) {
+                    let option = document.createElement('option');
+                    option.value = hour;
+                    option.text = hour + ":00";
+                    schedule.appendChild(option);
+                }
+            }
+        });
+    });
+</script>
+
 <?php require 'layout/footer.php'; ?>
