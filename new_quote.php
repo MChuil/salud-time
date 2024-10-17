@@ -25,6 +25,12 @@
             $doctors[$i]['end'] = $query['end'];
         }
     }
+
+
+    if(!empty($_SESSION['form_data'])){
+        $data = $_SESSION['form_data'];
+        unset($_SESSION['form_data']);
+    }
 ?>
 
 <?php require_once 'layout/header.php'; ?>
@@ -62,10 +68,10 @@
                                     <!-- Selección del paciente -->
                                     <div class="form-group col-6">
                                         <label for="patient_id">Seleccione el Paciente</label>
-                                        <select id="patient_id" name="patient_id" class="form-control" required>
+                                        <select id="patient_id" name="patient_id" class="form-control" value="<?= (!empty($data)) ? $data['patient_id'] : null ?>" required>
                                             <option value="">Seleccionar</option>
                                             <?php foreach ($patients as $item) { ?>
-                                                <option value="<?= $item['id'] ?>"><?= $item['name']?></option>
+                                                <option value="<?= $item['id'] ?>" <?= (!empty($data) && $data['patient_id'] == $item['id']) ? "selected" : null ?>><?= $item['name']?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -73,34 +79,30 @@
                                     <!-- Selección del doctor -->
                                     <div class="form-group col-6">
                                         <label for="doctor_id">Seleccione el Doctor</label>
-                                        <select id="doctor_id" name="doctor_id" class="form-control"  required>
+                                        <select id="doctor_id" name="doctor_id" class="form-control" value="<?= (!empty($data)) ? $data['doctor_id'] : null ?>"  required>
                                             <option value="">Seleccionar</option>
                                             <?php foreach ($doctors as $item) { ?>
-                                                <option value="<?= $item['id'] ?>"><?= $item['name'] . ' ' . $item['lastname']?></option>
+                                                <option value="<?= $item['id'] ?>" <?= (!empty($data) && $data['doctor_id'] == $item['id']) ? "selected" : null ?>><?= $item['name'] . ' ' . $item['lastname']?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
 
                                     <!-- Selección del horario -->
                                     <div class="form-group col-6">
-                                        <label for="schedule_id">Seleccione el Dia</label>
-                                        <select id="days" name="day" class="form-control" required>
-                                            <option value="">Seleccionar</option>
-                                        </select>
+                                        <label for="schedule_id">Seleccione el Dia <small id="infoDays"></small></label>
+                                        <input type="date" name="day" id="day" value="<?= (!empty($data)) ? $data['date'] : date('Y-m-d') ?>" min="<?= date('Y-m-d') ?>" class="form-control" required>
                                     </div>
 
                                     <!-- Peso -->
                                     <div class="form-group col-6">
                                     <label for="schedule_id">Seleccione la hora</label>
-                                        <select id="schedule" name="schedule" class="form-control" required>
+                                        <!--<input type="hidden" id="tmpSchedule" value="<?= (!empty($data)) ? $data['hour'] : null ?>"> -->
+                                        <select id="schedule" name="schedule" data-hour="<?= (!empty($data)) ? $data['hour'] : null ?>" class="form-control" required>
                                             <option value="">Seleccionar</option>
                                         </select>
                                     </div>
-
-                            
-
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Guardar Cita</button>
+                                        <button type="submit" class="btn btn-primary">Verificar disponibilidad y guardar</button>
                                     </div>
                                 </div>
                             </form>
@@ -115,92 +117,65 @@
 <?php include 'layout/copyright.php'; ?>
 <aside class="control-sidebar control-sidebar-dark"></aside>
 <script>
+    const doctor_id = document.querySelector('#doctor_id'); //select
+    const schedule = document.querySelector('#schedule'); //select
+    const infoDays = document.querySelector('#infoDays'); //small
+    //const tmpSchedule = document.querySelector('#tmpSchedule'); //small
     document.addEventListener('DOMContentLoaded', ()=>{
         let doctors = <?= json_encode($doctors) ?>;
         console.log(doctors);
-        const doctor_id = document.querySelector('#doctor_id'); //select
-        const days = document.querySelector('#days'); //select
-        const schedule = document.querySelector('#schedule'); //select
+        if(schedule.getAttribute('data-hour') != ''){ //si ya tiene una hora seleccionada
+            let id = doctor_id.value;
+            let query = doctors.find(r => r.id === id);
+            chargeHours(query, schedule.getAttribute('data-hour'));
+        }
+        
+        /*if(tmpSchedule.value !=''){ 
+            let id = doctor_id.value;
+            let query = doctors.find(r => r.id === id);
+            chargeHours(query, tmpSchedule.value);
+        }*/
 
         doctor_id.addEventListener('change', ()=>{
             let id = doctor_id.value;
             let query = doctors.find(r => r.id === id);
-            days.innerHTML = '';
-            let option = document.createElement('option')
-            option.value ='';
-            option.text= 'Seleccionar'
-            option.disabled = true;
-            option.selected = true;
-            days.appendChild(option)
-            if(query.days){
-                let dias = JSON.parse(query.days)
-                for (const key in dias) {
-                    let option = document.createElement('option')
-                    option.value = dias[key];
-                    option.text = dias[key];
-                    days.appendChild(option);
-                }
+            const dias = JSON.parse(query.days);
+            infoDays.innerHTML = '(Horario del doctor: ';
+            for (const key in dias) {
+                infoDays.innerHTML += `${dias[key]}, `;
+                
             }
+            infoDays.innerHTML += ')';
+            chargeHours(query);
         })
+        
     })
-</script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', ()=> {
-        let doctors = <?= json_encode($doctors) ?>;
-        const doctor_id = document.querySelector('#doctor_id'); // select para doctor
-        const days = document.querySelector('#days'); // select para dias
-        const schedule = document.querySelector('#schedule'); // select para horas
+    
 
-        doctor_id.addEventListener('change', () => {
-            let id = doctor_id.value;
-            let query = doctors.find(r => r.id === id);
-            
-            
-            days.innerHTML = '';
-            schedule.innerHTML = '';
-            
-            
-            let optionDay = document.createElement('option');
-            optionDay.value = '';
-            optionDay.text = 'Seleccionar';
-            optionDay.disabled = true;
-            optionDay.selected = true;
-            days.appendChild(optionDay);
-            
-            
-            let optionHour = document.createElement('option');
-            optionHour.value = '';
-            optionHour.text = 'Seleccionar';
-            optionHour.disabled = true;
-            optionHour.selected = true;
-            schedule.appendChild(optionHour);
+    function chargeHours(query, value = null){
+        schedule.innerHTML = '';            
+        //select de horas
+        let optionHour = document.createElement('option');
+        optionHour.value = '';
+        optionHour.text = 'Seleccionar';
+        optionHour.disabled = true;
+        optionHour.selected = true;
+        schedule.appendChild(optionHour);
+        if(query.start && query.end){
+            let startHour = parseInt(query.start);
+            let endHour = parseInt(query.end);
 
-            
-            if(query.days){
-                let dias = JSON.parse(query.days);
-                for (const key in dias) {
-                    let option = document.createElement('option');
-                    option.value = dias[key];
-                    option.text = dias[key];
-                    days.appendChild(option);
+            for(let hour = startHour; hour <= endHour; hour++) {
+                let option = document.createElement('option');
+                option.value = hour;
+                option.text = hour + ":00";
+                if(value == hour){
+                    option.selected = true;
                 }
+                schedule.appendChild(option);
             }
-
-            
-            if(query.start && query.end){
-                let startHour = parseInt(query.start);
-                let endHour = parseInt(query.end);
-
-                for(let hour = startHour; hour <= endHour; hour++) {
-                    let option = document.createElement('option');
-                    option.value = hour;
-                    option.text = hour + ":00";
-                    schedule.appendChild(option);
-                }
-            }
-        });
-    });
+        }
+    }
 </script>
-
 <?php require 'layout/footer.php'; ?>

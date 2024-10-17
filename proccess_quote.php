@@ -11,14 +11,24 @@ if (isset($_GET['action'])) {
             $data = [
                 'patient_id' => $_POST['patient_id'],
                 'doctor_id' => $_POST['doctor_id'],
-                'date' => $_POST['date'],
-                'hour' => $_POST['hour'],
-                'status' => $_POST['status'],
-                'weight' => $_POST['weight'],
-                'height' => $_POST['height'],
-                'pressure' => $_POST['pressure'],
-                'rhythm' => $_POST['rhythm']
+                'date' => $_POST['day'],
+                'hour' => $_POST['schedule'],
+                'scheduled' => 'scheduled'
             ];
+
+            //variables de session del fomulario
+            $_SESSION['form_data'] = $data;
+
+            header('Location: new_quote.php');
+            break;
+            /**
+             *   ---Validar si el dia elegido esta dentro del horario del doctor
+             * obtener el nombre del dia y verificar si existe en el array de horarios de ese doctor
+             * Si no esta dentro de los dias, crear una variable de sesion con el mensaje de error
+            */
+
+            //consultar si la cita ya existe, si existe, crear una variable de sesion con el mensaje de error
+
 
             // Insertar la nueva cita en la base de datos
             if ($quote->create($data)) {
