@@ -6,7 +6,7 @@ define('DATABASE', 'salud_time');
 
 define('USER', 'root'); 
 
-define('PASSWORD', 'root'); //se cambio la contraseña 
+define('PASSWORD', ''); //se cambio la contraseña 
 
 define('SITE', 'Salud Time');
 

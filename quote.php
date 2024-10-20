@@ -47,7 +47,7 @@ $quotes = $quote->getAll();
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="width: 10px"></th>
+                                        <th style="width: 10px">ID</th>
                                         <th>Paciente</th>
                                         <th>Médico</th>
                                         <th>Fecha</th>
@@ -55,8 +55,7 @@ $quotes = $quote->getAll();
                                         <th>Estatus</th>
                                         <th>Creado</th>
                                         <th>Actualizado</th>
-                                        
-                                        
+                                           
                                     </tr>
                                 </thead>
                                 <tbody>

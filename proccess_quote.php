@@ -19,18 +19,15 @@ if (isset($_GET['action'])) {
             //variables de session del fomulario
             $_SESSION['form_data'] = $data;
 
-            header('Location: new_quote.php');
-            break;
-            /**
-             *   ---Validar si el dia elegido esta dentro del horario del doctor
-             * obtener el nombre del dia y verificar si existe en el array de horarios de ese doctor
-             * Si no esta dentro de los dias, crear una variable de sesion con el mensaje de error
-            */
+            // Validar si la cita ya existe
+            $existingQuote = $quote->getByDoctorAndDateTime($data['doctor_id'], $data['date'], $data['hour']);
+            if ($existingQuote) {
+                $_SESSION['error_message'] = 'El doctor ya tiene una cita programada a esa hora.';
+                header('Location: new_quote.php');
+                exit();
+            }
 
-            //consultar si la cita ya existe, si existe, crear una variable de sesion con el mensaje de error
-
-
-            // Insertar la nueva cita en la base de datos
+            // Insertar la nueva cita en la base de datos si no hay conflicto
             if ($quote->create($data)) {
                 header('Location: quote.php'); // Redirigir a la página de citas
             }

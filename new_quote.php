@@ -5,6 +5,12 @@
         header('Location: index.php');
     }
 
+    if (!empty($_SESSION['error_message'])) {
+        echo '<div class="alert alert-danger">' . $_SESSION['error_message'] . '</div>';
+        unset($_SESSION['error_message']);
+    }
+    
+
     // Cargar las clases de Doctor y Paciente
     require_once 'class/Doctor.php';
     require_once 'class/Patient.php';
@@ -140,12 +146,10 @@
             let id = doctor_id.value;
             let query = doctors.find(r => r.id === id);
             const dias = JSON.parse(query.days);
-            infoDays.innerHTML = '(Horario del doctor: ';
-            for (const key in dias) {
-                infoDays.innerHTML += `${dias[key]}, `;
-                
-            }
-            infoDays.innerHTML += ')';
+
+            const diasString = dias.join(', ')
+            infoDays.innerHTML = `(Horario del doctor: ${diasString})`;
+            
             chargeHours(query);
         })
         
